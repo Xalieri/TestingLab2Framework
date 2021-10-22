@@ -21,9 +21,17 @@ namespace TestingLab2Framework
             }
             return sum;
         }
+        public static double Sin(double x)
+        {
+            return Math.Sqrt(1 - Math.Pow(Cos(x), 2)) * -1;
+        }
+        public static double Tan(double x)
+        {
+            return Sin(x) / Cos(x);
+        }
         public static double Csc(double x)
         {
-            return 1 / Math.Sin(x);
+            return 1 / Math.Sqrt(1 - Math.Pow(Cos(x), 2));
         }
         public static double Sec(double x)
         {
