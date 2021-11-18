@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TestingLab2Framework
 {
-    class AlternativeTrigonometry
+    public class AlternativeTrigonometry
     {
         public static double Cos(double x)
         {
