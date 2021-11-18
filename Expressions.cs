@@ -17,5 +17,17 @@ namespace TestingLab2Framework
         {
             return (((((Math.Log(x, 2) - Math.Log(x, 2)) * Math.Log10(x)) / (Math.Log(x, 3) / (Math.Log(x, 5) * LnCount(x)))) + ((LnCount(x) / (Math.Log10(x) / Math.Log(x, 2))) * Math.Log(x, 3))) * ((Math.Log(x, 2) * Math.Pow(Math.Log(x, 3), 3)) / ((Math.Log10(x) * Math.Log(x, 2)) * Math.Pow(Math.Log(x, 5), 2))));
         }
+        public double CalculateCommonExp(Func<double, double> CountCos, Func<double, double> CountSin, Func<double, double> CountTan, Func<double, double> LnCount, double x)
+        {
+            if (x <= 0)
+            {
+                return (((((CountTan(x) / CountTan(x)) + CountSin(x)) + CountTan(x)) * (1 / CountSin(x))) * (1 / CountCos(x)));
+            }
+            if (x > 0)
+            {
+                return (((((Math.Log(x, 2) - Math.Log(x, 2)) * Math.Log10(x)) / (Math.Log(x, 3) / (Math.Log(x, 5) * LnCount(x)))) + ((LnCount(x) / (Math.Log10(x) / Math.Log(x, 2))) * Math.Log(x, 3))) * ((Math.Log(x, 2) * Math.Pow(Math.Log(x, 3), 3)) / ((Math.Log10(x) * Math.Log(x, 2)) * Math.Pow(Math.Log(x, 5), 2))));
+            }
+            return 0;
+        }
     }
 }

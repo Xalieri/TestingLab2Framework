@@ -23,7 +23,15 @@ namespace TestingLab2Framework
         }
         public static double Sin(double x)
         {
-            return Math.Sqrt(1 - Math.Pow(Cos(x), 2)) * -1;
+            if (x >= 0)
+            {
+                return Math.Sqrt(1 - Math.Pow(Cos(x), 2)) * -1;
+            }
+            if (x< 0)
+            {
+                return Math.Sqrt(1 - Math.Pow(Cos(x), 2));
+            }
+            return 0;
         }
         public static double Tan(double x)
         {
@@ -39,7 +47,10 @@ namespace TestingLab2Framework
         }
         public static double Ln(double x)
         {
-
+            if (x <= 0)
+            {
+                return double.NaN;
+            }
             double count = 1;
             double totalValue = 0;
             double Iterations = 37;
