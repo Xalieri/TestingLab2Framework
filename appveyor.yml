@@ -11,6 +11,6 @@ dotnet_csproj:
   file_version: '{version}'
   informational_version: '{version}'
 build:
-  project: TestingLab2Framework.sln
+  project: TestingLab2Framework.csproj
 before_build:
   - nuget restore
