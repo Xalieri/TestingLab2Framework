@@ -23,14 +23,55 @@ namespace TestingLab2Framework
         }
         public static double Sin(double x)
         {
-            if (x >= 0)
+            if (x > 0)
             {
-                return Math.Sqrt(1 - Math.Pow(Cos(x), 2)) * -1;
+                int kOfPi = 0;
+                for (double i = 0; i < x; i += Math.PI)
+                {
+                    kOfPi = Convert.ToInt32(i/ Math.PI); 
+                }
+                if(kOfPi % 2 == 0)
+                {
+                    return Math.Sqrt(1 - Math.Pow(Cos(x), 2));
+                }
+                else
+                {
+                    return Math.Sqrt(1 - Math.Pow(Cos(x), 2)) * -1;
+                }
             }
-            if (x< 0)
+            if (x < 0)
             {
-                return Math.Sqrt(1 - Math.Pow(Cos(x), 2));
+                int kOfPi = 0;
+                for (double i = 0; i > x; i -= Math.PI)
+                {
+                    kOfPi = Convert.ToInt32(i/ Math.PI);
+                }
+                if (kOfPi % 2 == 0)
+                {
+                    return Math.Sqrt(1 - Math.Pow(Cos(x), 2)) * -1;
+                }
+                else
+                {
+                    return Math.Sqrt(1 - Math.Pow(Cos(x), 2));
+                }
             }
+
+
+            //if (x > Math.PI || x < -Math.PI)
+            //{
+            //    if (x > 0)
+            //    {
+            //        return Math.Sqrt(1 - Math.Pow(Cos(x), 2));
+            //    }
+            //    if (x < 0)
+            //    {
+            //        return Math.Sqrt(1 - Math.Pow(Cos(x), 2)) * -1;
+            //    }
+            //}
+            //else
+            //{
+            //    return Math.Sqrt(1 - Math.Pow(Cos(x), 2));
+            //}
             return 0;
         }
         public static double Tan(double x)
@@ -47,13 +88,17 @@ namespace TestingLab2Framework
         }
         public static double Ln(double x)
         {
-            if (x <= 0)
+            if (x == 0)
+            {
+                return double.NegativeInfinity;
+            }
+            if (x < 0)
             {
                 return double.NaN;
             }
             double count = 1;
             double totalValue = 0;
-            double Iterations = 37;
+            double Iterations = 1000;
             double z = 1;
             double powe = 1;
             double y;
@@ -73,6 +118,30 @@ namespace TestingLab2Framework
             }
 
             return 2 * totalValue;
+        }
+        public static double Log(double x, double y)
+        {
+            if((y > 0) && (y != 1) && (x > 0))
+            {
+                return Ln(x) / Ln(y);
+            }
+            if ((y < 0) && (x == 1))
+            {
+                return double.NaN;
+            }
+            if ((y == 0) && (x == 1))
+            {
+                return 0;
+            }
+            if ((y != 1) && (x == 1))
+            {
+                return 0;
+            }
+            if ((x == 0) && (y != 1) && (y > 0))
+            {
+                return Double.NegativeInfinity;
+            }
+            return double.NaN;
         }
     }
 }

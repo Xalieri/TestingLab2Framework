@@ -13,135 +13,109 @@ namespace TestingLab2Framework
         class ExpressionsTests
         {
             Expressions exprs = new Expressions();
-            double FirstExpression_MyCos(double x)
-            {
-                return exprs.CalculateExp1(AlternativeTrigonometry.Cos, AlternativeTrigonometry.Sin, AlternativeTrigonometry.Tan, x);
-                //return (((((Math.Tan(x) / Math.Tan(x)) + Math.Sin(x)) + Math.Tan(x)) * AlternativeTrigonometry.Csc(x)) * AlternativeTrigonometry.Sec(x));
-            }
-            double FirstExpression_CommonCos(double x)
-            {
-                return exprs.CalculateExp1(Math.Cos, Math.Sin, Math.Tan, x);
-                //return (((((Math.Tan(x) / Math.Tan(x)) + Math.Sin(x)) + Math.Tan(x)) * (1 / Math.Sin(x))) * (1 / Math.Cos(x)));
-            }
-            double SecondExpression_MyLn(double x)
-            {
-                return exprs.CalculateExp2(AlternativeTrigonometry.Ln, x);
-                //return (((((Math.Log(x, 2) - Math.Log(x, 2)) * Math.Log10(x)) / (Math.Log(x, 3) / (Math.Log(x, 5) * Math.Log(x)))) + ((Math.Log(x) / (Math.Log10(x) / Math.Log(x, 2))) * Math.Log(x, 3))) * ((Math.Log(x, 2) * Math.Pow(Math.Log(x, 3), 3)) / ((Math.Log10(x) * Math.Log(x, 2)) * Math.Pow(Math.Log(x, 5), 2))));
-            }
-            double SecondExpression_CommonLn(double x)
-            {
-                return exprs.CalculateExp2(Math.Log, x);
-                //return (((((Math.Log(x, 2) - Math.Log(x, 2)) * Math.Log10(x)) / (Math.Log(x, 3) / (Math.Log(x, 5) * AlternativeTrigonometry.Ln(x)))) + ((AlternativeTrigonometry.Ln(x) / (Math.Log10(x) / Math.Log(x, 2))) * Math.Log(x, 3))) * ((Math.Log(x, 2) * Math.Pow(Math.Log(x, 3), 3)) / ((Math.Log10(x) * Math.Log(x, 2)) * Math.Pow(Math.Log(x, 5), 2))));
-            }
+
             double CommonExpression_MyTrigonometry(double x)
             {
-                return exprs.CalculateCommonExp(AlternativeTrigonometry.Cos, AlternativeTrigonometry.Sin, AlternativeTrigonometry.Tan, AlternativeTrigonometry.Ln, x);
+                return exprs.CalculateCommonExp(AlternativeTrigonometry.Cos, AlternativeTrigonometry.Sin, AlternativeTrigonometry.Tan, AlternativeTrigonometry.Ln, AlternativeTrigonometry.Log, x);
             }
             double CommonExpression_CommonTrigonometry(double x)
             {
-                return exprs.CalculateCommonExp(Math.Cos, Math.Sin, Math.Tan, Math.Log, x);
+                return exprs.CalculateCommonExp(Math.Cos, Math.Sin, Math.Tan, Math.Log, Math.Log, x);
             }
             [Test]
-            public void Cos_PositiveX()
+            public void Cos()
             {
-                Assert.AreEqual(
-                    Math.Round(AlternativeTrigonometry.Cos(5), 12, MidpointRounding.AwayFromZero), 
-                    Math.Round(Math.Cos(5), 12, MidpointRounding.AwayFromZero)
-                );
+                for (double x = -10; x <= 10; x += 0.01)
+                {
+                    Assert.AreEqual
+                    (
+                        Math.Round(AlternativeTrigonometry.Cos(x), 10, MidpointRounding.AwayFromZero), 
+                        Math.Round(Math.Cos(x), 10, MidpointRounding.AwayFromZero)
+                    );
+                }
             }
             [Test]
-            public void Sin_PositiveX()
+            public void Sin()
             {
-                Assert.AreEqual(
-                    Math.Round((AlternativeTrigonometry.Sin(5)), 12, MidpointRounding.AwayFromZero), 
-                    Math.Round(Math.Sin(5), 12, MidpointRounding.AwayFromZero)
-                );
+                for (double x = -10; x <= 0; x += 0.01)
+                {
+                    Assert.AreEqual
+                    (
+                        Math.Round(AlternativeTrigonometry.Sin(x), 9, MidpointRounding.AwayFromZero), 
+                        Math.Round(Math.Sin(x), 9, MidpointRounding.AwayFromZero)
+                    );
+                }
             }
             [Test]
-            public void Tan_PositiveX()
+            public void Tan()
             {
-                Assert.AreEqual(
-                    Math.Round(AlternativeTrigonometry.Tan(5), 12, MidpointRounding.AwayFromZero), 
-                    Math.Round(Math.Tan(5), 12, MidpointRounding.AwayFromZero)
-                );
+                for (double x = -10; x <= 10; x += 0.01)
+                {
+                    Assert.AreEqual
+                    (
+                        Math.Round(AlternativeTrigonometry.Tan(x), 8, MidpointRounding.AwayFromZero),
+                        Math.Round(Math.Tan(x), 8, MidpointRounding.AwayFromZero)
+                    );
+                }
             }
             [Test]
-            public void Ln_PositiveX()
+            public void Ln()
             {
-                Assert.AreEqual
-                (
-                    Math.Round(AlternativeTrigonometry.Ln(5), 12, MidpointRounding.AwayFromZero),
-                    Math.Round(Math.Log(5), 12, MidpointRounding.AwayFromZero)
-                );
+                for (double x = -10; x <= 10; x += 0.1)
+                {
+                        Assert.AreEqual
+                    (
+                        Math.Round(AlternativeTrigonometry.Ln(x), 3, MidpointRounding.AwayFromZero),
+                        Math.Round(Math.Log(x), 3, MidpointRounding.AwayFromZero)
+                    );
+                }
             }
             [Test]
-            public void Cos_NegativeX()
+            public void Log()
             {
-                Assert.AreEqual(
-                    Math.Round(AlternativeTrigonometry.Cos(-5), 12, MidpointRounding.AwayFromZero),
-                    Math.Round(Math.Cos(-5), 12, MidpointRounding.AwayFromZero)
-                );
+                for (int y = -10; y <= 10; y += 1)
+                {
+                    for (int x = -10; x <= 10; x += 1)
+                    {
+                            Assert.AreEqual
+                        (
+                            Math.Round(AlternativeTrigonometry.Log(x, y), 3, MidpointRounding.AwayFromZero),
+                            Math.Round(Math.Log(x, y), 3, MidpointRounding.AwayFromZero)
+                        );
+                    }
+                }
             }
-            [Test]
-            public void Sin_NegativeX()
-            {
-                Assert.AreEqual(
-                    Math.Round(Math.Sqrt(1 - Math.Pow(AlternativeTrigonometry.Cos(-5), 2)), 12, MidpointRounding.AwayFromZero),
-                    Math.Round(Math.Sin(-5), 12, MidpointRounding.AwayFromZero)
-                );
-            }
-            [Test]
-            public void Tan_NegativeX()
-            {
-                Assert.AreEqual(
-                    Math.Round(AlternativeTrigonometry.Tan(5), 12, MidpointRounding.AwayFromZero),
-                    Math.Round(Math.Tan(5), 12, MidpointRounding.AwayFromZero)
-                );
-            }
-            [Test]
-            public void Ln_NegativeX()
-            {
-                Assert.AreEqual
-                (
-                    Math.Round(AlternativeTrigonometry.Ln(-5), 12, MidpointRounding.AwayFromZero),
-                    Math.Round(Math.Log(-5), 12, MidpointRounding.AwayFromZero)
-                );
-            }
-            //[Test]
-            //public void ExpressionWithMyCosIsEqualToDefaul_PositiveX()
-            //{
-            //    Assert.AreEqual
-            //    (
-            //        Math.Round(FirstExpression_MyCos(5), 12, MidpointRounding.AwayFromZero), 
-            //        Math.Round(FirstExpression_CommonCos(5), 12, MidpointRounding.AwayFromZero)
-            //    );
-            //}
-            //[Test]
-            //public void ExpressionWithMyLnIsEqualToDefaul_PositiveX()
-            //{
-            //    Assert.AreEqual
-            //    (
-            //        Math.Round(SecondExpression_MyLn(5), 12, MidpointRounding.AwayFromZero), 
-            //        Math.Round(SecondExpression_CommonLn(5), 12, MidpointRounding.AwayFromZero)
-            //    );
-            //}
             [Test]
             public void CommonExpressionWithMyTrigonometryWhere_X_IsLessOrEqualZero()
             {
-                Assert.AreEqual
-                (
-                    Math.Round(CommonExpression_MyTrigonometry(-5), 12, MidpointRounding.AwayFromZero),
-                    Math.Round(CommonExpression_CommonTrigonometry(-5), 12, MidpointRounding.AwayFromZero)
-                );
+                for (double x = -10; x < -0.01; x += 0.01)
+                {
+                    if (x == 0)
+                    {
+                        x += 0.1;
+                    }
+                    Assert.AreEqual
+                    (
+                        Math.Round(CommonExpression_MyTrigonometry(x), 4, MidpointRounding.AwayFromZero),
+                        Math.Round(CommonExpression_CommonTrigonometry(x), 4, MidpointRounding.AwayFromZero)
+                    );
+                }
             }
             [Test]
             public void CommonExpressionWithMyTrigonometryWhere_X_IsMoreThanZero()
             {
-                Assert.AreEqual
-                (
-                    Math.Round(CommonExpression_MyTrigonometry(5), 12, MidpointRounding.AwayFromZero),
-                    Math.Round(CommonExpression_CommonTrigonometry(5), 12, MidpointRounding.AwayFromZero)
-                );
+                for (double x = 0.01; x <= 10; x += 0.01)
+                {
+                    if (x == 0)
+                    {
+                        x += 0.1;
+                    }
+                    Assert.AreEqual
+                    (
+                        Math.Round(CommonExpression_MyTrigonometry(x), 4, MidpointRounding.AwayFromZero),
+                        Math.Round(CommonExpression_CommonTrigonometry(x), 4, MidpointRounding.AwayFromZero)
+                    );
+                }
             }
         }
     }
